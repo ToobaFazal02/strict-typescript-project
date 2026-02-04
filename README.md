@@ -1,49 +1,47 @@
-# TypeScript Overview
+## 📘 TypeScript Functions Overview
 
-TypeScript is used to build more reliable, maintainable, and scalable applications by adding **static type checking** and advanced features to JavaScript. It helps developers catch errors early during development (at "compile time") rather than at runtime, which is particularly beneficial for large, complex codebases and team collaboration.
+This section covers the essential ways to handle functions in TypeScript to ensure type safety and robust code.
 
-## Purpose of TypeScript
+### 1. Type Annotations
 
-The primary purpose of TypeScript is to enhance JavaScript development for enterprise-scale applications. It is a **syntactic superset** of JavaScript, meaning all valid JavaScript code is also valid TypeScript code, but TypeScript adds extra syntax and features.
-
-## Key Features
-
-* **Static Typing**: Developers can define the type of data (e.g., string, number, boolean) that variables, function parameters, and return values should hold. The compiler then checks for type mismatches.
-* **Interfaces and Generics**: These features allow developers to define custom types and reusable type structures, enabling class-based object-oriented programming (OOP) principles.
-* **Modern JavaScript Features**: TypeScript supports the latest ECMAScript features and can transpile them into older JavaScript versions (like ES5) to ensure compatibility with a wide range of browsers.
-
-## Why Use TypeScript?
-
-* **Early Error Detection**: Catching type-related bugs during the development phase (compile time) reduces debugging effort.
-* **Improved Code Quality**: Explicit types serve as living documentation, making code easier to read for team members.
-* **Enhanced Developer Tooling**: IDEs provide better IntelliSense, navigation, and real-time error checking.
-* **Scalability**: Helps manage complexity in large projects with hundreds of files, ensuring consistency.
-* **Seamless Integration**: Integrates with frameworks like Angular, React, and Vue through the DefinitelyTyped repository.
-
----
-
-## Code Example: Type Annotations with Objects
-
-Type annotation with objects allows you to specify the type of property that the object should have.
+Explicitly define the types for both **parameters** and the **return value** to prevent unexpected data types.
 
 ```typescript
-let personExTwo: {
-    name: string;
-    age: number;
-    jobTitle: string;
-    address: {
-        street: string;
-        city: string;
-        country: string;
-    };
-} = {
-    name: "John Doe",
-    age: 30,
-    jobTitle: "Software Engineer",
-    address: {
-        street: "123 Main St",
-        city: "Anytown",
-        country: "USA"
-    }
-};
+function greet(name: string): string {
+  return `Hello, ${name}`;
+}
 
+```
+
+### 2. Optional & Default Parameters
+
+* **Optional (`?`):** Allows a parameter to be omitted during the function call.
+* **Default (`=`):** Provides a fallback value if no argument is passed.
+
+```typescript
+function login(user: string, role: string = "Guest", email?: string) { /* ... */ }
+
+```
+
+### 3. Rest Parameters
+
+Used when the number of arguments is unknown. It collects multiple arguments into a single **typed array**.it is always an array. (... these three dots are called spread parameters before num below)
+
+```typescript
+function sum(...nums: number[]): number { /* ... */ }
+
+```
+
+### 4. Arrow & Anonymous Functions
+
+Standard modern JavaScript function patterns with TypeScript's type enforcement applied to variables.widely used in modern js.
+
+```typescript
+const multiply = (a: number, b: number): number => a * b;
+
+```
+
+### 5. Special Return Types: `void` & `never`
+
+* **`void`**: Used for functions that perform an action but **do not return** a value (e.g., logging).
+* **`never`**: Used for functions that **never reach a return point**, such as those that throw errors or have infinite loops.
